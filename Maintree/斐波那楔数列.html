@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>    
+        let arr1 = [0,1]
+
+        function serARR (arr){
+           
+            let temp = arr[arr.length-1]+arr[arr.length-2]
+
+            arr.push(temp)
+            if(arr.length == 31 ){
+                console.log(arr)
+                return 
+            }
+            serARR(arr)
+        }
+        serARR(arr1)
+    
+    </script>
+</body>
+</html>

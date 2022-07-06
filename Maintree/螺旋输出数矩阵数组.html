@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 标准解答
+        var spiralOrder = function (matrix) {
+    if (matrix.length === 0) {
+        return [];
+    }
+    let top = 0;
+    let bottom = matrix.length - 1
+    let left = 0;
+    let right = matrix[0].length - 1
+    let direction = 'right'
+    let result = []
+    while (left <= right && top <= bottom) {
+        if (direction === 'right') {
+            for (let i = left; i <= right; i++) {
+                result.push(matrix[top][i])
+                console.log(matrix[top][i]);
+            }
+            top++;
+            direction = 'down'
+        }
+         if (direction === 'down') {
+            for (let i = top; i <= bottom; i++) {
+                result.push(matrix[i][right])
+                console.log(matrix[i][right]);
+            }
+            right--;
+            direction = 'left'
+        }
+         if (direction === 'left') {
+            for (let i = right; i >= left; i--) {
+                result.push(matrix[bottom][i])
+                console.log(matrix[bottom][i]);
+            }
+            bottom--;
+            direction = 'top'
+        }
+         if (direction === 'top') {
+            for (let i = bottom; i >= top; i--) {
+                result.push(matrix[i][left])
+                console.log(matrix[i][left]);
+            }
+            left++;
+            direction = 'right'
+        }
+        console.log(result);
+        return result
+    }
+}
+
+
+// 野路子
+var spiralOrderOld = function (matrix){
+    if (matrix.length === 0) {
+        return [];
+    }
+    let m = matrix.length //行 
+    let n = matrix[1].length //列
+
+    let i = 0;//行
+    let j = 0;//列
+
+    let ii = Math.ceil(m/2)
+    let jj = Math.ceil(n/2)
+
+    let result = []
+    while(i<ii&&j<jj){
+        for(let k = 0+j ; k < n-j;k++ ){
+            console.log(matrix[i][k]);
+            result.push(matrix[i][k])
+        }
+        j++;
+        i++
+
+        for(let k = i;k<=m-i;k++){
+            console.log(matrix[k][n-j]);
+            result.push(matrix[k][n-j])
+        }
+
+        for(let k= n-j-1;k>=0+j-1;k--){
+            console.log(matrix[m-i][k]);
+            result.push(matrix[m-i][k])
+        }
+        for(let k= m-i-1;k>=0+i;k--){
+            console.log(matrix[k][j-1]);
+            result.push(matrix[k][j-1])
+        }
+
+
+    }
+
+    
+}
+
+let arr = [
+    [1,2,3,2],
+    [4,5,6,3],
+    [4,5,6,3],
+    
+]
+spiralOrderOld(arr)
+    </script>
+</body>
+</html>

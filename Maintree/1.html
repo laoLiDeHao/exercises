@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+        function outArr(arr){
+
+            let top = 0
+            let left = 0
+            let right = 0
+            let bottom = 0
+
+            let position = 'right'
+
+            let m=arr.length
+            let n=arr[0].length
+
+            result = []
+
+            while(left<right){
+
+                if(position == 'right'){
+                    for(let i = right;i<n-left;i++){
+                        result.push(arr[top][i])
+                    }
+
+                    position = 'down'
+                    top ++;
+                }  
+                if(position == 'down'){
+                    for(let i = top;i<m-down;i++){
+                        result.push(arr[i][n-right])
+                    }
+
+                    position = 'left'
+                    right ++
+                } 
+                if(position == 'left'){
+                    for(let i = n-right;i>left;i--){
+                        result.push(arr[m-down][i])
+                    }
+
+                    position = 'top'
+                    down++
+                }  
+                if(position == 'top'){
+                    for(let i = n-down;i>top;i--){
+                        result.push(arr[i][left])
+                    }
+
+                    position = 'top'
+                    down++
+                }  
+                
+
+            }   
+
+            return result
+
+        }
+
+
+    </script>
+</body>
+</html>

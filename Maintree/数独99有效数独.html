@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*\
+        题设
+            请你判断一个 9 x 9 的数独是否有效。只需要 根据以下规则 ，验证已经填入的数字是否有效即可。
+
+            数字 1-9 在每一行只能出现一次。
+            数字 1-9 在每一列只能出现一次。
+            数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。（请参考示例图）
+                    
+        */
+
+        function isValidSudoku(arr) {
+            for (let i = 0; i < 9; i++) {
+                let row = new Set()
+                let col = new Set()
+                // console.log(arr[i]);
+                for (let j = 0; j < 9; j++) {
+                    // 每一行
+
+                    if (arr[i][j] !== '.') {
+                        if (row.has(arr[i][j])) {
+                            return false
+                        }
+                        row.add(arr[i][j])
+                    }
+                    // 每一列
+                    if (arr[j][i] != '.') {
+                        if (col.has(arr[j][i])) {
+                            return false
+                        }
+                        col.add(arr[j][i])
+
+                    }
+                }
+
+
+
+                //  >>向下取整 <<
+                // 每一个小宫格
+                let block = new Set()
+                // 每个小宫格的坐标起始位置
+                let x = (i / 3 >> 0) * 3, y = i % 3 * 3
+                for (let j = 0; j < 9; j++) {
+                    if (arr[x][y] !== '.') {
+                        if (block.has(arr[x][y])) {
+                            return false
+                        }
+                        block.add(arr[x][y])
+                    }
+                    y++
+                    if ((j + 1) % 3 === 0) {
+                        x += 1
+                        y -= 3
+                    }
+                }
+
+            }
+
+            return true
+        }
+
+
+        let board =
+            [["5", "3", ".", ".", "7", ".", ".", ".", "."]
+                , ["6", ".", ".", "1", "9", "5", ".", ".", "."]
+                , [".", "9", "8", ".", ".", ".", ".", "6", "."]
+                , ["8", ".", ".", ".", "6", ".", ".", ".", "3"]
+                , ["4", ".", ".", "8", ".", "3", ".", ".", "1"]
+                , ["7", ".", ".", ".", "2", ".", ".", ".", "6"]
+                , [".", "6", ".", ".", ".", ".", "2", "8", "."]
+                , [".", ".", ".", "4", "1", "9", ".", ".", "5"]
+                , [".", ".", ".", ".", "8", ".", ".", "7", "9"]]
+
+
+
+        console.log(isValidSudoku(board));
+
+    </script>
+</body>
+
+</html>

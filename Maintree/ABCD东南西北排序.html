@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr =  ['C华北', 'A华北', 'A华南', 'B华南', 'A华东', 'B华东']
+
+        let sortStr = function(str1,str2){
+            // 先比较ABC，如果一样比较东南西北
+            if(str1.charCodeAt()===str2.charCodeAt()){
+                let a = getNum(str1)
+                let b = getNum(str2)
+
+                return a-b
+            }
+
+            return str1.charCodeAt() - str2.charCodeAt()
+        }
+
+        let getNum = function(str){
+            switch(str[2]){
+                case '东':
+                return 1
+                break
+                case '南':
+                return 2
+                case '西':
+                return 3
+                case '北':
+                return 4
+
+            }
+        }
+        console.log(arr.sort())
+        // console.log(arr.sort(sortStr))
+
+    </script>
+</body>
+</html>
